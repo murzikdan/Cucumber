@@ -46,7 +46,7 @@ public sealed partial class ContentAudioSystem : SharedContentAudioSystem
     public const float LobbyMultiplier = 3f;
     public const float InterfaceMultiplier = 2f;
     public const float VoiceChatMultiplier = 5f;
-    public const float BarkMultiplier = 5f;
+    public const float BarkMultiplier = 1.5f; // Reserve edit
 
     public override void Initialize()
     {

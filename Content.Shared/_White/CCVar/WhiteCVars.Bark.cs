@@ -9,7 +9,7 @@ public sealed partial class WhiteCVars
     /// Default volume setting of bark sound
     /// </summary>
     public static readonly CVarDef<float> BarkVolume =
-        CVarDef.Create("bark.volume", 0.5f, CVar.CLIENTONLY | CVar.ARCHIVE);
+        CVarDef.Create("bark.volume", 0.3f, CVar.CLIENTONLY | CVar.ARCHIVE); // Reserve edit
 
     public static readonly CVarDef<int> BarkLimit =
         CVarDef.Create("bark.limit",12, CVar.CLIENTONLY | CVar.ARCHIVE);

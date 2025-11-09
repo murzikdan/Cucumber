@@ -11,6 +11,7 @@ using Content.Shared.Chat;
 using Robust.Client.Audio;
 using Robust.Client.UserInterface;
 using Robust.Shared.Audio;
+using Robust.Shared.Audio.Systems;
 using Robust.Shared.Configuration;
 using Robust.Shared.Player;
 using Robust.Shared.Timing;
@@ -62,7 +63,7 @@ public sealed class BarkSystem : SharedBarkSystem
     }
 
     private void OnVoiceTypeChanged(CharacterVoiceType voice) => _clientSideEnabled = voice == CharacterVoiceType.Bark;
-    private void OnBarkVolumeChanged(float volume) => _volume = volume;
+    private void OnBarkVolumeChanged(float volume) => _volume = SharedAudioSystem.GainToVolume(volume); // Reserve fix, + SharedAudioSystem.GainToVolume
     private void OnBarkLimitChanged(int count) => _maxBarkCount = count;
 
     private void OnEntityBark(EntityBarkEvent ev)
