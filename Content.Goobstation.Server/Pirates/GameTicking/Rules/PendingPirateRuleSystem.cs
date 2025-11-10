@@ -47,7 +47,8 @@ public sealed partial class PendingPirateRuleSystem : GameRuleSystem<PendingPira
             if (pending.PirateSpawnTimer >= pending.PirateSpawnTime)
             {
                 // remove spawned order.
-                AllEntityQuery<BecomesStationComponent, StationMemberComponent>().MoveNext(out var eqData, out _, out _);
+                if (!AllEntityQuery<BecomesStationComponent, StationMemberComponent>().MoveNext(out var eqData, out _, out _) || !eqData.IsValid())
+                    return; // Reserve fix: added MoveNext result check and eqData.IsValid() validation
                 var station = _station.GetOwningStation(eqData);
                 if (!TryComp<StationBankAccountComponent>(station, out var bank))
                     return;
@@ -69,7 +70,8 @@ public sealed partial class PendingPirateRuleSystem : GameRuleSystem<PendingPira
         base.Started(uid, component, gameRule, args);
 
         // get station
-        AllEntityQuery<BecomesStationComponent, StationMemberComponent>().MoveNext(out var eqData, out _, out _);
+        if (!AllEntityQuery<BecomesStationComponent, StationMemberComponent>().MoveNext(out var eqData, out _, out _) || !eqData.IsValid())
+            return; // Reserve fix: added MoveNext result check and eqData.IsValid() validation
         var station = _station.GetOwningStation(eqData);
         if (station == null) return;
 
