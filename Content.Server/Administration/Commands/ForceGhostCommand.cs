@@ -1,3 +1,10 @@
+// SPDX-FileCopyrightText: 2025 J <billsmith116@gmail.com>
+// SPDX-FileCopyrightText: 2025 Kirill <kirill@example.com>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 slarticodefast <161409025+slarticodefast@users.noreply.github.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using Content.Server.GameTicking;
 using Content.Server.Ghost;
 using Content.Shared.Administration;
@@ -42,7 +49,7 @@ public sealed class ForceGhostCommand : LocalizedEntityCommands
         if (!_mind.TryGetMind(player, out var mindId, out var mind))
             (mindId, mind) = _mind.CreateMind(player.UserId);
 
-        if (!_ghost.OnGhostAttempt(mindId, false, true, true, mind))
+        if (!_ghost.OnGhostAttempt(mindId, false, true, mind))
             shell.WriteLine(Loc.GetString("cmd-forceghost-denied"));
     }
 

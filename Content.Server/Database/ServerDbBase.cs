@@ -114,6 +114,7 @@
 // SPDX-FileCopyrightText: 2025 Piras314 <p1r4s@proton.me>
 // SPDX-FileCopyrightText: 2025 Poips <Hanakohashbrown@gmail.com>
 // SPDX-FileCopyrightText: 2025 PuroSlavKing <103608145+PuroSlavKing@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 RedFoxIV <38788538+RedFoxIV@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 SX-7 <92227810+SX-7@users.noreply.github.com>
 // SPDX-FileCopyrightText: 2025 SX-7 <sn1.test.preria.2002@gmail.com>
@@ -148,6 +149,7 @@ using System.Threading.Tasks;
 using Content.Server.Administration.Logs;
 using Content.Server.Administration.Managers;
 using Content.Shared._RMC14.LinkAccount;
+using Content.Shared._White.CustomGhostSystem;
 using Content.Shared._White.Bark;
 using Content.Shared.Administration.Logs;
 using Content.Shared.Construction.Prototypes;
@@ -211,7 +213,9 @@ namespace Content.Server.Database
             foreach (var favorite in prefs.ConstructionFavorites)
                 constructionFavorites.Add(new ProtoId<ConstructionPrototype>(favorite));
 
-            return new PlayerPreferences(profiles, prefs.SelectedCharacterSlot, Color.FromHex(prefs.AdminOOCColor), constructionFavorites);
+            var ghostProto = new ProtoId<CustomGhostPrototype>(prefs.GhostId ?? "");
+
+            return new PlayerPreferences(profiles, prefs.SelectedCharacterSlot, Color.FromHex(prefs.AdminOOCColor), ghostProto, constructionFavorites);
         }
 
         public async Task SaveSelectedCharacterIndexAsync(NetUserId userId, int index)
@@ -290,6 +294,7 @@ namespace Content.Server.Database
                 UserId = userId.UserId,
                 SelectedCharacterSlot = 0,
                 AdminOOCColor = Color.Red.ToHex(),
+                GhostId = "", // WWDP EDIT
                 ConstructionFavorites = [],
             };
 
@@ -299,7 +304,7 @@ namespace Content.Server.Database
 
             await db.DbContext.SaveChangesAsync();
 
-            return new PlayerPreferences(new[] { new KeyValuePair<int, ICharacterProfile>(0, defaultProfile) }, 0, Color.FromHex(prefs.AdminOOCColor), []);
+            return new PlayerPreferences(new[] { new KeyValuePair<int, ICharacterProfile>(0, defaultProfile) }, 0, Color.FromHex(prefs.AdminOOCColor), new ProtoId<CustomGhostPrototype>(""), []);
         }
 
         public async Task DeleteSlotAndSetSelectedIndex(NetUserId userId, int deleteSlot, int newSlot)
@@ -324,6 +329,20 @@ namespace Content.Server.Database
             await db.DbContext.SaveChangesAsync();
 
         }
+
+        // WWDP EDIT START
+        public async Task SaveGhostTypeAsync(NetUserId userId, ProtoId<CustomGhostPrototype> proto)
+        {
+            await using var db = await GetDb();
+            var prefs = await db.DbContext
+                .Preference
+                .Include(p => p.Profiles)
+                .SingleAsync(p => p.UserId == userId.UserId);
+            prefs.GhostId = proto.Id;
+
+            await db.DbContext.SaveChangesAsync();
+        }
+        // WWDP EDIT END
 
         public async Task SaveConstructionFavoritesAsync(NetUserId userId, List<ProtoId<ConstructionPrototype>> constructionFavorites)
         {

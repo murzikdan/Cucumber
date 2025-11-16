@@ -1,3 +1,9 @@
+// SPDX-FileCopyrightText: 2025 Aviu00 <93730715+Aviu00@users.noreply.github.com>
+// SPDX-FileCopyrightText: 2025 Kirill <kirill@example.com>
+// SPDX-FileCopyrightText: 2025 ReserveBot <211949879+ReserveBot@users.noreply.github.com>
+//
+// SPDX-License-Identifier: AGPL-3.0-or-later
+
 using System.Linq;
 using System.Numerics;
 using Content.Goobstation.Common.Physics;
@@ -68,7 +74,10 @@ public sealed class StarGazerSystem : SharedStarGazerSystem
     private void OnGhost(GhostAttemptHandleEvent args)
     {
         if (HasComp<StarGazerComponent>(args.Mind.CurrentEntity))
-            args.CanReturnGlobal = false;
+        {
+            args.Handled = true;
+            args.Result = false;
+        }
     }
 
     private void OnSeekMaster(Entity<StarGazerComponent> ent, ref StarGazerSeekMasterEvent args)
