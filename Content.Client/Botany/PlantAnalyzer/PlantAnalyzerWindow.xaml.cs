@@ -82,6 +82,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
             PlantDataGrid.Visible = false;
         }
         PlantDataTags.Visible = PlantDataGrid.Visible;
+        PlantDataPanel.Visible = PlantDataGrid.Visible;
         PlantDataDivider.Visible = PlantDataGrid.Visible;
 
         // Section 3: Input
@@ -128,6 +129,7 @@ public sealed partial class PlantAnalyzerWindow : FancyWindow
         {
             ContainerGrid.Visible = false;
         }
+        ContainerPanel.Visible = ContainerGrid.Visible;
         ContainerDivider.Visible = ContainerGrid.Visible;
 
 

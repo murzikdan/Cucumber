@@ -61,11 +61,6 @@
   parent: BaseHydroToolRecipe
   id: PlantAnalyzer
   result: PlantAnalyzer
-
-- type: latheRecipe
-  parent: BaseHydroToolRecipe
-  id: PlantAnalyzer
-  result: PlantAnalyzer
   materials:
     Steel: 300
     Plastic: 200
