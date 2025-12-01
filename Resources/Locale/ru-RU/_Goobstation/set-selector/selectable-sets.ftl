@@ -128,7 +128,7 @@ selectable-set-blueshield-cqc-description =
 selectable-set-blueshield-chester-name = набор Честера
 selectable-set-blueshield-chester-description =
     Готовы на охоту?
-    Включает: 8-калиберный дробовик Честер,
+    Включает: Дробовик Честер 8-го калибра,
     запасные патроны,
     альтернативные патроны,
     запасные магазины.
