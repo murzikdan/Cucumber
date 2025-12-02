@@ -25,7 +25,7 @@ language-SolCommon-description = Уходящий корнями в китайс
 language-NovuNederic-name = Ново-Недирик
 language-NovuNederic-description = Язык космических колонистов и терраформистов, сохранивший резкие согласные своих земных корней. Популярен среди тех, кто осваивает новые миры.
 
-language-TauCetiBasic-name = Tau-Ceti Базовый
+language-TauCetiBasic-name = Тау-Сети Базовый
 language-TauCetiBasic-description = Духовный наследник эсперанто, созданный интеллектуалами Тау Кита. Его уникальная структура позволяет использовать его даже инопланетянам.
 
 language-Tradeband-name = Торговый
