@@ -6,11 +6,7 @@ using Robust.Shared.GameStates;
 using Robust.Shared.Utility;
 using static Robust.Shared.Utility.SpriteSpecifier;
 
-namespace Content.Shared._Europa.Lighting.Shaders;
-
-//
-// License-Identifier: AGPL-3.0-or-later
-//
+namespace Content.Shared._Orion.Lighting.Shaders;
 
 /// <summary>
 /// This is used for LightOverlay
