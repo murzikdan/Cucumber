@@ -71,10 +71,6 @@ public sealed class VocalSystem : EntitySystem
         if (args.Handled || !args.Emote.Category.HasFlag(EmoteCategory.Vocal))
             return;
 
-        // Reserve port: WD Barks - Disabled standard vocal emotes completely
-        return;
-
-        /*
         // snowflake case for wilhelm scream easter egg
         if (args.Emote.ID == component.ScreamId)
         {
@@ -97,7 +93,6 @@ public sealed class VocalSystem : EntitySystem
 
         // just play regular sound based on emote proto
         args.Handled = _chat.TryPlayEmoteSound(uid, _proto.Index(sounds), args.Emote);
-        */
     }
 
     private void OnScreamAction(EntityUid uid, VocalComponent component, ScreamActionEvent args)
@@ -111,10 +106,6 @@ public sealed class VocalSystem : EntitySystem
 
     private bool TryPlayScreamSound(EntityUid uid, VocalComponent component)
     {
-        // Reserve port: WD Barks - Disabled standard scream sounds completely
-        return false;
-
-        /*
         // Goobstation start
         var getSoundEv = new GetEmoteSoundsEvent();
         RaiseLocalEvent(uid, ref getSoundEv);
@@ -133,8 +124,6 @@ public sealed class VocalSystem : EntitySystem
             return false;
 
         return _chat.TryPlayEmoteSound(uid, _proto.Index(sounds), component.ScreamId);
-        */
-        return false;
     }
 
     private void LoadSounds(EntityUid uid, VocalComponent component, Sex? sex = null)
